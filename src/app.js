@@ -7,9 +7,7 @@ const cors = require("cors");
 const app = express();
 
 const corsOptions = {
-  origin: function (origin, callback) {
-    callback(null, true); // 👈 allow all origins (for testing)
-  },
+  origin: "https://frontend1-ecru-zeta.vercel.app",
   credentials: true,
 };
 
