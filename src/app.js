@@ -10,8 +10,12 @@ app.use(
   cors({
     origin: "https://frontend1-ecru-zeta.vercel.app",
     credentials: true,
+    methods: ["GET", "POST", "PUT", "DELETE"],
+    allowedHeaders: ["Content-Type", "Authorization"],
   }),
 );
+
+app.options("*", cors());
 app.use("/api/auth", authRoutes);
 app.use("/api/todo", todoRoutes);
 module.exports = app;
