@@ -36,8 +36,9 @@ const registerUser = async (req, res) => {
 
     res.cookie("token", token, {
       httpOnly: true,
-      sameSite: "none",
-      secure: true,
+      sameSite: "lax",
+      secure: false,
+      maxAge: 1000 * 60 * 60 * 24,
     });
 
     res.status(201).json({
@@ -84,11 +85,6 @@ const loginUser = async (req, res) => {
     process.env.JWT_SECRET,
   );
 
-  res.cookie("token", token, {
-    httpOnly: true,
-    sameSite: "none",
-    secure: true,
-  });
   res.status(200).json({
     message: "sent data successfully",
     user: {
