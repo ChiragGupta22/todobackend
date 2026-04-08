@@ -77,6 +77,20 @@ const loginUser = async (req, res) => {
     });
   }
 
+  const token = jwt.sign(
+    {
+      id: user._id,
+      role: user.role,
+    },
+    process.env.JWT_SECRET,
+  );
+
+  res.cookie("token", token, {
+    httpOnly: true,
+    sameSite: "lax",
+    secure: false,
+    maxAge: 1000 * 60 * 60 * 24,
+  });
   res.status(200).json({
     message: "sent data successfully",
     user: {
